@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - MyStore</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">MyStore</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Checkout Form -->
+    <main class="checkout-container">
+        <h1>Checkout</h1>
+
+        <form id="checkoutForm">
+            <section class="form-section">
+                <h2>Shipping Information</h2>
+                <input type="text" id="name" placeholder="Full Name" required />
+                <input type="text" id="address" placeholder="Address" required />
+                <input type="text" id="city" placeholder="City" required />
+                <input type="text" id="phone" placeholder="Phone Number" required />
+            </section>
+
+            <section class="form-section">
+                <h2>Payment Method</h2>
+                <select id="payment" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="mpesa">M-Pesa</option>
+                    <option value="card">Credit/Debit Card</option>
+                    <option value="cash">Cash on Delivery</option>
+                </select>
+            </section>
+
+            <button type="submit" class="btn">Place Order</button>
+        </form>
+
+        <div id="confirmationMessage" class="confirmation hidden">
+            <h2>Order Confirmed!</h2>
+            <p>Thank you for shopping with us. Your order has been placed.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MyStore. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('checkoutForm');
+        const confirmation = document.getElementById('confirmationMessage');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Simple validation
+            const name = document.getElementById('name').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const payment = document.getElementById('payment').value;
+
+            if (!name || !address || !city || !phone || !payment) {
+                alert('Please fill all fields correctly.');
+                return;
+            }
+
+            form.style.display = 'none';
+            confirmation.classList.remove('hidden');
+        });
+    </script>
+
+</body>
+
+</html>
